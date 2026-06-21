@@ -1,0 +1,59 @@
+{% extends 'comunes/base.html' %}
+
+{% block title %}Inicio | CoopBingo{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="card-panel p-5 text-center mb-5">
+            <h1 class="display-5 fw-bold text-dark mb-3">¡Bienvenido a CoopBingo!</h1>
+            <p class="lead text-secondary mb-4">
+                Sistema centralizado para la gestión de aportes, préstamos y sesiones de juego en tiempo real.
+            </p>
+
+            <hr class="my-4" style="opacity: 0.1;">
+
+            <p class="text-muted mb-4">
+                Selecciona el módulo al que deseas ingresar:
+            </p>
+
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="{% url 'dashboard_admin' %}" class="btn btn-primary px-4 py-2 fw-semibold">
+                    Ir al Panel Admin
+                </a>
+
+                <a href="{% url 'finanzas' %}" class="btn btn-outline-success px-4 py-2 fw-semibold">
+                    Módulo de Finanzas
+                </a>
+
+                <a href="{% url 'partidas' %}" class="btn btn-outline-dark px-4 py-2 fw-semibold">
+                    Sala de Bingo
+                </a>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card-panel p-4 text-center h-100">
+                    <h5 class="fw-bold">Estado del Servidor</h5>
+                    <p class="text-success fw-semibold mb-0">En línea y operando</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card-panel p-4 text-center h-100">
+                    <h5 class="fw-bold">Próxima Partida</h5>
+                    <p class="text-muted mb-0">Pendiente de programación</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card-panel p-4 text-center h-100">
+                    <h5 class="fw-bold">Fondo Acumulado</h5>
+                    <p class="text-muted mb-0">Protegido y cifrado</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
