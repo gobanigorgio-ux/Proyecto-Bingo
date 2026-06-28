@@ -1,5 +1,7 @@
 """
-URL configuration for django_prueba project.
+URL configuration for bingo_prueba project.
+
+
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/6.0/topics/http/urls/
@@ -20,10 +22,48 @@ from bingo import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.holamundo, name='inicio'), # Ahora carga directo en la raíz
+
+
+    # ==========================================
+    # 1. COMUNES (Páginas públicas y base)
+    # ==========================================
     path('', views.inicio, name='inicio'),
-    path('panel-admin/', views.dashboard_admin, name='dashboard_admin'),
-    path('finanzas/', views.finanzas, name='finanzas'),
-    path('partidas/', views.partidas, name='partidas'),
+    path('bingo-publico/', views.bingo_publico, name='bingo'),
+
+
+    # ==========================================
+    # 2. CUENTAS (Autenticación y Perfiles)
+    # ==========================================
+    path('login/', views.inicio_sesion, name='login'),
+    path('logout/', views.cerrar_sesion, name='logout'),
+    # Registro de usuarios
+    path('registro/opciones/', views.seleccion_registro, name='seleccion_registro'),
+    path('registro/socio/', views.registro_socio, name='registro_socio'),
+    path('registro/jugador/', views.registro_jugador, name='registro_jugador'),
+    # Gestión del perfil del usuario logueado
+    path('perfil/', views.perfil, name='perfil'),
+    path('perfil/mis_cartones', views.mis_cartones, name='mis_cartones'),
+    path('perfil/mis_cartones/pdf/<int:id_bingo>/', views.descargar_cartones_pdf, name='descargar_cartones_pdf'),
+
+
+    # ==========================================
+    # 3. ADMINISTRADOR (Consolas de Mando)
+    # ==========================================
+    # Esta es la ruta maestra que carga tu archivo dashboard.html (SPA)
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('dashboard/reporte-socios-estrella/', views.reporte_socios_puntuales, name='reporte_socios_puntuales'),
+    path('dashboard/reporte-liquidacion/<int:id_bingo>/', views.reporte_liquidacion_bingo, name='reporte_liquidacion_bingo'),
+    path('dashboard/reporte-cartera/', views.reporte_cartera_prestamos, name='reporte_cartera_prestamos'),
+    path('dashboard/reporte-caja-pdf/', views.reporte_caja_semanal_pdf, name='reporte_caja_semanal_pdf'),
+
+
+    # ==========================================
+    # 4. NEGOCIO (Finanzas y Ventas)
+    # ==========================================
+    path('negocio/venta-cartones/', views.venta_cartones, name='venta_cartones'),
+
 
 ]
+
+
+
